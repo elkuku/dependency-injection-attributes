@@ -10,17 +10,17 @@ final class LoggerRemote implements RemoteInterface
 {
     public function __construct(
         private RemoteInterface $inner,
-        private LoggerInterface $logger,
+        private LoggerInterface $buttonLogger,
     ) {
     }
 
     public function press(string $name): void
     {
-        $this->logger->info('Pressing button {name}', ['name' => $name]);
+        $this->buttonLogger->info('Pressing button {name}', ['name' => $name]);
 
         $this->inner->press($name);
 
-        $this->logger->info('Button {name} pressed', ['name' => $name]);
+        $this->buttonLogger->info('Button {name} pressed', ['name' => $name]);
     }
 
     public function buttons(): iterable
