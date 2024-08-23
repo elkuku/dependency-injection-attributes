@@ -41,6 +41,10 @@ final class RemoteController extends AbstractController
         ButtonInterface $button,
     ): Response {
         if (true) { // some condition
+            dump($button);
+
+            $button->press();
+
             dd($button);
         }
     }
