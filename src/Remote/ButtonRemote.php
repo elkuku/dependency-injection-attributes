@@ -3,19 +3,28 @@
 namespace App\Remote;
 
 use App\Remote\Button\ButtonInterface;
-use Psr\Container\ContainerInterface;
-use Symfony\Component\DependencyInjection\Attribute\AutowireLocator;
+use Symfony\Component\DependencyInjection\Attribute\AutowireIterator;
 
 final class ButtonRemote
 {
     public function __construct(
-        #[AutowireLocator(ButtonInterface::class)]
-        private ContainerInterface $buttons,
+        #[AutowireIterator(ButtonInterface::class)]
+        private iterable $buttons,
     ) {
     }
 
     public function press(string $name): void
     {
         $this->buttons->get($name)->press();
+    }
+
+    /**
+     * @return string[]
+     */
+    public function buttons(): iterable
+    {
+        foreach ($this->buttons as $name => $button) {
+            yield $name;
+        }
     }
 }
