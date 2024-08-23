@@ -7,6 +7,7 @@ use App\Remote\Button\PowerButton;
 use App\Remote\RemoteInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -35,8 +36,10 @@ final class RemoteController extends AbstractController
     }
 
     #[Route('/power', name: 'power')]
-    public function power(ButtonInterface $button): Response
-    {
+    public function power(
+        #[Autowire(service: PowerButton::class)]
+        ButtonInterface $button,
+    ): Response {
         if (true) { // some condition
             dd($button);
         }
