@@ -12,7 +12,7 @@ final class LoggerRemote implements RemoteInterface
     public function __construct(
         private RemoteInterface $inner,
 
-        #[Target('buttonLogger')]
+        #[Target('buttonsLogger')]
         private LoggerInterface $logger,
     ) {
     }
