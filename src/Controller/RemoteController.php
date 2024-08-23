@@ -11,6 +11,7 @@ use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Contracts\Cache\CacheInterface;
 use function Symfony\Component\String\u;
 
 final class RemoteController extends AbstractController
@@ -47,5 +48,19 @@ final class RemoteController extends AbstractController
 
             dd($button);
         }
+    }
+
+    #[Route('/buttons', name: 'buttons')]
+    public function buttons(
+        RemoteInterface $remote,
+        CacheInterface $cache,
+    ): Response {
+        $buttons = $cache->get('buttons', function () use ($remote) {
+            dd($remote->buttons());
+
+            return $remote->buttons();
+        });
+
+        return $this->json($buttons);
     }
 }
