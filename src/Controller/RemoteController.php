@@ -15,8 +15,6 @@ final class RemoteController extends AbstractController
     #[Route('/', name: 'home', methods: ['GET', 'POST'])]
     public function index(Request $request, RemoteInterface $remote): Response
     {
-        dd($remote);
-
         if ('POST' === $request->getMethod()) {
             try {
                 $remote->press($button = $request->request->getString('button'));
