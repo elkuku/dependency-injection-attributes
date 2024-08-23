@@ -3,9 +3,11 @@
 namespace App\Remote;
 
 use App\Remote\Button\ButtonInterface;
+use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 use Symfony\Component\DependencyInjection\Attribute\AutowireLocator;
 use Symfony\Contracts\Service\ServiceCollectionInterface;
 
+#[AsAlias]
 final class ButtonRemote implements RemoteInterface
 {
     public function __construct(
