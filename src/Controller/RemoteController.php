@@ -9,6 +9,7 @@ use Psr\Container\NotFoundExceptionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\DependencyInjection\Attribute\AutowireCallable;
+use Symfony\Component\DependencyInjection\Attribute\AutowireMethodOf;
 use Symfony\Component\DependencyInjection\Attribute\AutowireServiceClosure;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -57,7 +58,7 @@ final class RemoteController extends AbstractController
      */
     #[Route('/buttons', name: 'buttons')]
     public function buttons(
-        #[AutowireCallable(service: RemoteInterface::class, method: 'buttons')]
+        #[AutowireMethodOf(RemoteInterface::class)]
         \Closure $remote,
         CacheInterface $cache,
     ): Response {
