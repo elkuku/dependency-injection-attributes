@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Remote\Button\PowerButton;
 use App\Remote\RemoteInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -30,5 +31,13 @@ final class RemoteController extends AbstractController
         return $this->render('index.html.twig', [
             'buttons' => $remote->buttons(),
         ]);
+    }
+
+    #[Route('/power', name: 'power')]
+    public function power(PowerButton $button): Response
+    {
+        if (true) { // some condition
+            dd($button);
+        }
     }
 }
