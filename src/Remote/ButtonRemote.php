@@ -24,8 +24,6 @@ final class ButtonRemote
      */
     public function buttons(): iterable
     {
-        foreach ($this->buttons as $name => $button) {
-            yield $name;
-        }
+        return array_keys($this->buttons->getProvidedServices());
     }
 }
