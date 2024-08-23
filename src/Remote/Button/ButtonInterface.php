@@ -2,11 +2,12 @@
 
 namespace App\Remote\Button;
 
-use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
-use Symfony\Component\DependencyInjection\Attribute\Lazy;
+use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 
-#[AutoconfigureTag]
-#[Lazy(ButtonInterface::class)]
+#[Autoconfigure(
+    tags: [ButtonInterface::class],
+    lazy: ButtonInterface::class,
+)]
 interface ButtonInterface
 {
     public function press(): void;
