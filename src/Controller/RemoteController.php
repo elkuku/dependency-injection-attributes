@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Remote\Button\ButtonInterface;
 use App\Remote\Button\PowerButton;
 use App\Remote\RemoteInterface;
 use Psr\Container\NotFoundExceptionInterface;
@@ -34,7 +35,7 @@ final class RemoteController extends AbstractController
     }
 
     #[Route('/power', name: 'power')]
-    public function power(PowerButton $button): Response
+    public function power(ButtonInterface $button): Response
     {
         if (true) { // some condition
             dd($button);
