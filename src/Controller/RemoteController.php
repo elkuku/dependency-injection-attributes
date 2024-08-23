@@ -54,18 +54,18 @@ final class RemoteController extends AbstractController
     }
 
     /**
-     * @param \Closure():string[] $remote
+     * @param \Closure():string[] $buttons
      */
     #[Route('/buttons', name: 'buttons')]
     public function buttons(
         #[AutowireMethodOf(RemoteInterface::class)]
-        \Closure $remote,
+        \Closure $buttons,
         CacheInterface $cache,
     ): Response {
-        $buttons = $cache->get('buttons', function () use ($remote) {
-            dd($remote());
+        $buttons = $cache->get('buttons', function () use ($buttons) {
+            dd($buttons());
 
-            return $remote();
+            return $buttons();
         });
 
         return $this->json($buttons);
